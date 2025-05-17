@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Rose Just For You</title>
+  <link rel="stylesheet" href="./style.css">
+  <link href="https://fonts.font.im/css?family=Sacramento" rel="stylesheet">
+  <style>
+    #playStopButton {
+      position: fixed;
+      top: 39%;
+      left: 30px;
+      padding: 12px 30px;
+      font-size: 18px;
+      background-color: pink;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <button id="playStopButton">Play</button>
+
+  <div class="container">
+    <div class="rose">
+      <div class="flower">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+      </div>
+      <div class="leaf">
+        <div class="stem"></div>
+        <div class="leafs"></div>
+        <div class="leafs"></div>
+      </div>
+    </div>
+    <div class="rose-text">Rose Just For You</div>
+
+    <audio id="bg-music" src="items/Rizz.mp3" loop></audio>
+  </div>
+
+  <script>
+    const playStopButton = document.getElementById("playStopButton");
+    const audio = document.getElementById("bg-music");
+
+    playStopButton.addEventListener("click", function() {
+      if (audio.paused) {
+        audio.play().then(() => {
+          playStopButton.textContent = "Stop";
+        }).catch(err => {
+          console.error("Error playing audio:", err);
+        });
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+        playStopButton.textContent = "Play";
+      }
+    });
+  </script>
+</body>
+</html>
+
